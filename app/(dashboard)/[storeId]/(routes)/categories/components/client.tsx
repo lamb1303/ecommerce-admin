@@ -17,26 +17,31 @@ interface CategoryClientProps {
 export const CategoryClient: React.FC<CategoryClientProps> = ({ data }) => {
   const router = useRouter();
   const params = useParams();
+  const env = process.env.NEXT_PUBLIC_ENV;
 
   return (
     <>
       <div className="flex items-center justify-between">
         <Heading
-          title={`Categories (${data.length})`}
-          description="Manage categories for your store"
+          title={`Categorías (${data.length})`}
+          description="Gestiona categorías para tu tienda"
         />
         <Button
           onClick={() => router.push(`/${params.storeId}/categories/new`)}
         >
           <Plus className="mr-2 h-4 w-4" />
-          Add New
+          Agregar
         </Button>
       </div>
       <Separator />
       <DataTable columns={columns} data={data} searchKey="name" />
-      <Heading title="API" description="API calls for categories" />
-      <Separator />
-      <ApiList entityName="categories" entityIdName="categoryId" />
+      {env !== "production" && (
+        <>
+          <Heading title="API" description="API llamadas para categorías" />
+          <Separator />
+          <ApiList entityName="categories" entityIdName="categoryId" />
+        </>
+      )}
     </>
   );
 };

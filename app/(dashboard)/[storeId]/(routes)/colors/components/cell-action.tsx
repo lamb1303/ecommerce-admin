@@ -24,6 +24,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const params = useParams();
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const env = process.env.NEXT_PUBLIC_ENV;
 
   const onCopy = (id: string) => {
     navigator.clipboard.writeText(id);
@@ -59,20 +60,23 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem onClick={() => onCopy(data.id)}>
-            <Copy className="mr-2 h-4 w-4" />
-            Copy Id
-          </DropdownMenuItem>
+          <DropdownMenuLabel>Acciones</DropdownMenuLabel>
+          {env !== "production" && (
+            <DropdownMenuItem onClick={() => onCopy(data.id)}>
+              <Copy className="mr-2 h-4 w-4" />
+              Copiar Id
+            </DropdownMenuItem>
+          )}
+
           <DropdownMenuItem
             onClick={() => router.push(`/${params.storeId}/colors/${data.id}`)}
           >
             <Edit className="mr-2 h-4 w-4" />
-            Update
+            Actualizar
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setOpen(true)}>
             <Trash className="mr-2 h-4 w-4" />
-            Delete
+            Eliminar
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
