@@ -35,55 +35,51 @@ export const getGraphRevenue = async (storeId: string) => {
 
   const graphData: GraphData[] = [
     {
-      name: "Jan",
+      name: "Enero",
       total: 0,
     },
     {
-      name: "Feb",
+      name: "Febrero",
       total: 0,
     },
     {
-      name: "Mar",
+      name: "Marzo",
       total: 0,
     },
     {
-      name: "Apr",
+      name: "Abril",
       total: 0,
     },
     {
-      name: "May",
+      name: "Mayo",
       total: 0,
     },
     {
-      name: "Jun",
+      name: "Junio",
       total: 0,
     },
     {
-      name: "Jan",
+      name: "Julio",
       total: 0,
     },
     {
-      name: "Jul",
+      name: "Agosto",
       total: 0,
     },
     {
-      name: "Aug",
+      name: "Septiembre",
       total: 0,
     },
     {
-      name: "Sep",
+      name: "Octubre",
       total: 0,
     },
     {
-      name: "Oct",
+      name: "Noviembre",
       total: 0,
     },
     {
-      name: "Nov",
-      total: 0,
-    },
-    {
-      name: "Dec",
+      name: "Diciembre",
       total: 0,
     },
   ];

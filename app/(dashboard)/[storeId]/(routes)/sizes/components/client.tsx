@@ -17,24 +17,29 @@ interface SizesClientProps {
 export const SizesClient: React.FC<SizesClientProps> = ({ data }) => {
   const router = useRouter();
   const params = useParams();
+  const env = process.env.NEXT_PUBLIC_ENV;
 
   return (
     <>
       <div className="flex items-center justify-between">
         <Heading
-          title={`Sizes (${data.length})`}
-          description="Manage sizes for your store"
+          title={`Tallas (${data.length})`}
+          description="Gestiona tallas para tu tienda"
         />
         <Button onClick={() => router.push(`/${params.storeId}/sizes/new`)}>
           <Plus className="mr-2 h-4 w-4" />
-          Add New
+          Agregar
         </Button>
       </div>
       <Separator />
       <DataTable columns={columns} data={data} searchKey="name" />
-      <Heading title="API" description="API calls for sizes" />
-      <Separator />
-      <ApiList entityName="sizes" entityIdName="sizesdId" />
+      {env !== "production" && (
+        <>
+          <Heading title="API" description="API llamadas para tañamos" />
+          <Separator />
+          <ApiList entityName="sizes" entityIdName="sizesdId" />
+        </>
+      )}
     </>
   );
 };
