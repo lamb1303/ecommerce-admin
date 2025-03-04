@@ -102,7 +102,7 @@ export const ArticleForm: React.FC<NewsFormProps> = ({
       title: initialData?.title || "",
       content: initialData?.content || "",
       author_id: initialData?.author_id || "",
-      category_id: initialData?.category_id || "",
+      category_id: String(initialData?.category_id) || "",
       publication_date: initialData?.publication_date || "",
       images: parsedImages,
       excerpt: initialData?.excerpt || "",
