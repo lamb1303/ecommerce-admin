@@ -80,15 +80,13 @@ export const ArticleForm: React.FC<NewsFormProps> = ({
   const parsedImages =
     initialData?.images?.map((image: string) => JSON.parse(image)) || [];
 
-  console.log({ categories });
-
   const form = useForm<ArticleFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: initialData?.title || "",
       content: initialData?.content || "",
       author_id: initialData?.author_id || "",
-      category_id: initialData?.category_id || "",
+      category_id: String(initialData?.category_id) || "",
       publication_date: initialData?.publication_date || "",
       images: parsedImages,
       excerpt: initialData?.excerpt || "",
@@ -113,20 +111,21 @@ export const ArticleForm: React.FC<NewsFormProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialData]);
 
-  const onSubmit = async (data: ArticleFormValues) => {
+  const onSubmit = async (values: ArticleFormValues) => {
     try {
       setLoading(true);
+      const payload = { ...values, category_id: Number(values.category_id) };
       if (initialData) {
-        await axios.patch(`/api/articles/${initialData.id}`, data);
+        await axios.patch(`/api/articles/${initialData.id}`, payload);
         toast.success("Noticia Actualizada.");
       } else {
-        await axios.post(`/api/articles`, data);
+        await axios.post(`/api/articles`, payload);
         toast.success("Noticia Creada.");
       }
       router.refresh();
       router.push(`/news`);
     } catch (error: any) {
-      toast.error("Algo salio mal.");
+      toast.error("Algo salió mal.");
     } finally {
       setLoading(false);
     }
@@ -206,7 +205,10 @@ export const ArticleForm: React.FC<NewsFormProps> = ({
                     </FormControl>
                     <SelectContent>
                       {categories.map((category: any) => (
-                        <SelectItem key={category.id} value={String(category.id)}>
+                        <SelectItem
+                          key={category.id}
+                          value={String(category.id)}
+                        >
                           {category.name}
                         </SelectItem>
                       ))}

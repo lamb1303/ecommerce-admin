@@ -50,9 +50,10 @@ export async function DELETE(
 
     const { data, error } = await supabase
       .from("article")
-      .update({ deleted_at: new Date })
+      .update({ deleted_at: new Date() })
       .eq("id", params.id)
       .eq("author_id", userId.toString())
+      .select();
 
     if (error) {
       return new NextResponse(error.message, { status: 500 });
