@@ -80,6 +80,8 @@ export const ArticleForm: React.FC<NewsFormProps> = ({
   const parsedImages =
     initialData?.images?.map((image: string) => JSON.parse(image)) || [];
 
+  console.log({ categories });
+
   const form = useForm<ArticleFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -204,7 +206,7 @@ export const ArticleForm: React.FC<NewsFormProps> = ({
                     </FormControl>
                     <SelectContent>
                       {categories.map((category: any) => (
-                        <SelectItem key={category.id} value={category.id}>
+                        <SelectItem key={category.id} value={String(category.id)}>
                           {category.name}
                         </SelectItem>
                       ))}
