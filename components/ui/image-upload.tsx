@@ -12,6 +12,7 @@ interface ImageUploadProps {
   onChange: (value: string) => void;
   onRemove: (value: string) => void;
   value: string[];
+  lablel?: string;
 }
 
 const ImageUpload: React.FC<ImageUploadProps> = ({
@@ -19,6 +20,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   onChange,
   onRemove,
   value,
+  lablel,
 }) => {
   const [isMounted, setIsMounted] = useState(false);
 
@@ -52,7 +54,13 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
                 <Trash className="h-4 w-4" />
               </Button>
             </div>
-            <Image fill className="object-cover" alt="Image" src={url} />
+            <Image
+              fill
+              className="object-cover"
+              alt="Image"
+              src={url}
+              sizes="200px"
+            />
           </div>
         ))}
       </div>
@@ -70,7 +78,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
               onClick={onClick}
             >
               <ImagePlus className="h-4 w-4 mr-2" />
-              Upload an Image
+              {lablel || "Subir Imágen"}
             </Button>
           );
         }}

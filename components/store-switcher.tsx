@@ -44,7 +44,7 @@ export default function StoreSwitcher({
   const params = useParams();
   const router = useRouter();
 
-  const formattedItems = items.map((item) => ({
+  const formattedItems = items?.map((item) => ({
     label: item.name,
     value: item.id,
   }));

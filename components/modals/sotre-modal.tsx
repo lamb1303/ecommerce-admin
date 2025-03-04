@@ -19,33 +19,33 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const formSchema = z.object({
-  name: z.string().min(1),
+  title: z.string().min(1, { message: "Título es requerido" }),
 });
 
-export const StoreModal = () => {
+export const NewsModal = () => {
   const storeModal = useStoreModal();
   const [loading, setLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
+      title: "",
     },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setLoading(true);
-      const response = await axios.post("/api/stores", values);
-      window.location.assign(`/${response.data.id}`);
+      await axios.post("/api/stores", values);
+      window.location.assign(`/dashboard`);
     } catch (error) {
-      toast.error("Something went wrong.");
+      toast.error("Algo salio mal.");
     }
   };
   return (
     <Modal
-      title="Create store"
-      description="Add a new store to manage products and categories"
+      title="Crear Noticia"
+      description="¡Crea tu nueva noticia!"
       isOpen={storeModal.isOpen}
       onClose={storeModal.onClose}
     >
@@ -55,15 +55,15 @@ export const StoreModal = () => {
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <FormField
                 control={form.control}
-                name="name"
+                name="title"
                 render={({ field }) => {
                   return (
                     <FormItem>
-                      <FormLabel>Name</FormLabel>
+                      <FormLabel>Título</FormLabel>
                       <FormControl>
                         <Input
                           disabled={loading}
-                          placeholder="E-comerce"
+                          placeholder="Presidente anuncia nueva política económica"
                           {...field}
                         ></Input>
                       </FormControl>
@@ -78,10 +78,10 @@ export const StoreModal = () => {
                   variant={"outline"}
                   onClick={storeModal.onClose}
                 >
-                  Cancel
+                  Cancelar
                 </Button>
                 <Button disabled={loading} type="submit">
-                  Continue
+                  Continuar
                 </Button>
               </div>
             </form>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { StoreModal } from "@/components/modals/sotre-modal";
+import { NewsModal } from "@/components/modals/sotre-modal";
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -16,7 +16,7 @@ export const ModalProvider = () => {
 
   return (
     <>
-      <StoreModal />
+      <NewsModal />
     </>
   );
 };

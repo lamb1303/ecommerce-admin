@@ -13,44 +13,19 @@ const MainNav = ({
 
   const routes = [
     {
-      href: `/${params.storeId}`,
-      label: "Tablero",
-      active: pathname === `/${params.storeId}`,
+      href: `/`,
+      label: "Inicio",
+      active: pathname === `/`,
     },
     {
-      href: `/${params.storeId}/billboards`,
-      label: "Cartelera",
-      active: pathname === `/${params.storeId}/billboards`,
+      href: `/categories`,
+      label: "Categorías",
+      active: pathname === `/categories`,
     },
     {
-      href: `/${params.storeId}/sizes`,
-      label: "Tamaños",
-      active: pathname === `/${params.storeId}/sizes`,
-    },
-    {
-      href: `/${params.storeId}/categories`,
-      label: "Categorias",
-      active: pathname === `/${params.storeId}/categories`,
-    },
-    {
-      href: `/${params.storeId}/colors`,
-      label: "Colores",
-      active: pathname === `/${params.storeId}/colors`,
-    },
-    {
-      href: `/${params.storeId}/products`,
-      label: "Productos",
-      active: pathname === `/${params.storeId}/products`,
-    },
-    {
-      href: `/${params.storeId}/orders`,
-      label: "Órdenes",
-      active: pathname === `/${params.storeId}/orders`,
-    },
-    {
-      href: `/${params.storeId}/settings`,
-      label: "Configuración",
-      active: pathname === `/${params.storeId}/settings`,
+      href: `/news`,
+      label: "Noticias",
+      active: pathname === `/news`,
     },
   ];
 

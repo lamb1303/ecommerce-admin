@@ -1,12 +1,7 @@
-import prismadb from "@/lib/prismadb";
+import supabase from "@/lib/supabase";
 
-export const getStockCount = async (storeId: string) => {
-  const salesCount = await prismadb.product.count({
-    where: {
-      storeId,
-      isArchived: false,
-    },
-  });
+export const getTotalNews = async () => {
+  const { data: totalNews } = await supabase.from("article").select("*");
 
-  return salesCount;
+  return totalNews?.length;
 };
